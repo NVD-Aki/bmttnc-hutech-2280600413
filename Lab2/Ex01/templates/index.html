@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Caesar Cipher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">🔐 Caesar Cipher</h1>
+
+        <div class="row gy-4">
+            <!-- Bảng Encrypt -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">🔒 Encrypt</div>
+                    <div class="card-body">
+                        <form method="post" action="/encrypt">
+                            <div class="mb-3">
+                                <label for="encryptText" class="form-label fw-semibold">Text</label>
+                                <textarea
+                                    id="encryptText"
+                                    name="text"
+                                    class="form-control"
+                                    rows="4"
+                                    placeholder="Enter text to encrypt..."
+                                    required
+                                >{{ request.form.get('text', '') if request.path == '/encrypt' else '' }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="encryptShift" class="form-label fw-semibold">Shift</label>
+                                <input
+                                    type="number"
+                                    id="encryptShift"
+                                    name="shift"
+                                    class="form-control"
+                                    placeholder="Enter shift amount"
+                                    required
+                                    value="{{ request.form.get('shift', '') if request.path == '/encrypt' else '' }}"
+                                />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Encrypt</button>
+                        </form>
+                    </div>
+
+                    {% if encrypt_result %}
+                    <div class="card-footer bg-light">
+                        <strong>Result:</strong>
+                        <p class="mb-0 text-break">{{ encrypt_result }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Bảng Decrypt -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-warning text-dark">🔓 Decrypt</div>
+                    <div class="card-body">
+                        <form method="post" action="/decrypt">
+                            <div class="mb-3">
+                                <label for="decryptText" class="form-label fw-semibold">Text</label>
+                                <textarea
+                                    id="decryptText"
+                                    name="text"
+                                    class="form-control"
+                                    rows="4"
+                                    placeholder="Enter text to decrypt..."
+                                    required
+                                >{{ request.form.get('text', '') if request.path == '/decrypt' else '' }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="decryptShift" class="form-label fw-semibold">Shift</label>
+                                <input
+                                    type="number"
+                                    id="decryptShift"
+                                    name="shift"
+                                    class="form-control"
+                                    placeholder="Enter shift amount"
+                                    required
+                                    value="{{ request.form.get('shift', '') if request.path == '/decrypt' else '' }}"
+                                />
+                            </div>
+
+                            <button type="submit" class="btn btn-warning w-100">Decrypt</button>
+                        </form>
+                    </div>
+
+                    {% if decrypt_result %}
+                    <div class="card-footer bg-light">
+                        <strong>Result:</strong>
+                        <p class="mb-0 text-break">{{ decrypt_result }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

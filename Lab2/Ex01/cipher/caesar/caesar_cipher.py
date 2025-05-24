@@ -1,26 +1,29 @@
-from cipher.caesar import alphabet
 
+from cipher.caesar import ALPHABET  # Giả sử ALPHABET là chuỗi chữ cái hoa
 class CaesarCipher:
     def __init__(self):
-        self.alphabet = alphabet.ALPHABET
-
-    def encrypt_text(self, tex:str, key: int , mode: str) -> str:
+        self.alphabet = ALPHABET
+    def encrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
         text = text.upper()
-        encrypted_text = ""
+        encrypted_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index + key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            encrypted_text.append(output_letter)
-            return"".join(encrypted_text)
-    def decrypt_text(self, text: str, key: int, mode: str) -> str:
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index + key) % alphabet_len
+                encrypted_text.append(self.alphabet[output_index])
+            else:
+                encrypted_text.append(letter)  # Giữ lại dấu cách, ký tự đặc biệt
+        return "".join(encrypted_text)
+    def decrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
         text = text.upper()
         decrypted_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index - key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            decrypted_text.append(output_letter)
-            return "".join(decrypted_text)
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index - key) % alphabet_len
+                decrypted_text.append(self.alphabet[output_index])
+            else:
+                decrypted_text.append(letter)
+        return "".join(decrypted_text)

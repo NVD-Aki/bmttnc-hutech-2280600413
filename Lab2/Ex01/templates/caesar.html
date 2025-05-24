@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <title>Caesar Cipher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-5">🔐 Caesar Cipher</h1>
+
+        <div class="row">
+            <!-- Bảng Mã hóa -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">🔒 Mã hóa (Encrypt)</div>
+                    <div class="card-body">
+                        <form method="post" action="/encrypt">
+                            <div class="mb-3">
+                                <label for="encryptText" class="form-label">Văn bản:</label>
+                                <textarea id="encryptText" name="inputPlainText" class="form-control" rows="4" required>{{ encrypt_input_text or '' }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="encryptShift" class="form-label">Độ dịch (shift):</label>
+                                <input type="number" id="encryptShift" name="inputKeyPlain" class="form-control" required value="{{ inputKeyPlain or '' }}">
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Thực hiện Mã hóa</button>
+                        </form>
+                    </div>
+                    {% if encrypt_result %}
+                    <div class="card-footer">
+                        <strong>Kết quả Mã hóa:</strong>
+                        <p class="text-break">{{ encrypt_result }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Bảng Giải mã -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-warning text-dark">🔓 Giải mã (Decrypt)</div>
+                    <div class="card-body">
+                        <form method="post" action="/decrypt">
+                            <div class="mb-3">
+                                <label for="decryptText" class="form-label">Văn bản:</label>
+                                <textarea id="decryptText" name="inputPlainText" class="form-control" rows="4" required>{{ decrypt_input_text or '' }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="decryptShift" class="form-label">Độ dịch (shift):</label>
+                                <input type="number" id="decryptShift" name="inputKeyPlain" class="form-control" required value="{{ inputKeyPlain or '' }}">
+                            </div>
+                            <button type="submit" class="btn btn-warning w-100">Thực hiện Giải mã</button>
+                        </form>
+                    </div>
+                    {% if decrypt_result %}
+                    <div class="card-footer">
+                        <strong>Kết quả Giải mã:</strong>
+                        <p class="text-break">{{ decrypt_result }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-secondary">⬅ Quay lại trang chính</a>
+        </div>
+    </div>
+</body>
+</html>
