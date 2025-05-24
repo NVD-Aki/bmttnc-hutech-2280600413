@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caesar Cipher</title>
+</head>
+<body>
+    <h1>Caesar Cipher</h1>
+    <form method="post">
+        <label for="text">Text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="shift">Shift:</label>
+        <input id="shift" type="number" name="shift" required><br><br>
+
+        <button type="submit" name="action" value="encrypt">Encrypt</button>
+        <button type="submit" name="action" value="decrypt">Decrypt</button>
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
