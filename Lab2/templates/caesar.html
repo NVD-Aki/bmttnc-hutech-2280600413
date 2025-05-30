@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Caesar Cipher</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
@@ -10,7 +11,7 @@
         <h1 class="text-center mb-5">🔐 Caesar Cipher</h1>
 
         <div class="row">
-            <!-- Bảng Mã hóa -->
+            <!-- Mã hóa -->
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-success text-white">🔒 Mã hóa (Encrypt)</div>
@@ -24,19 +25,19 @@
                                 <label for="encryptShift" class="form-label">Độ dịch (shift):</label>
                                 <input type="number" id="encryptShift" name="inputKeyPlain" class="form-control" required value="{{ inputKeyPlain or '' }}">
                             </div>
-                            <button type="submit" class="btn btn-success w-100">Thực hiện Mã hóa</button>
+                            <button type="submit" class="btn btn-success w-100">🔐 Thực hiện Mã hóa</button>
                         </form>
                     </div>
                     {% if encrypt_result %}
                     <div class="card-footer">
                         <strong>Kết quả Mã hóa:</strong>
-                        <p class="text-break">{{ encrypt_result }}</p>
+                        <p class="text-break mb-0">{{ encrypt_result }}</p>
                     </div>
                     {% endif %}
                 </div>
             </div>
 
-            <!-- Bảng Giải mã -->
+            <!-- Giải mã -->
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-warning text-dark">🔓 Giải mã (Decrypt)</div>
@@ -50,13 +51,13 @@
                                 <label for="decryptShift" class="form-label">Độ dịch (shift):</label>
                                 <input type="number" id="decryptShift" name="inputKeyPlain" class="form-control" required value="{{ inputKeyPlain or '' }}">
                             </div>
-                            <button type="submit" class="btn btn-warning w-100">Thực hiện Giải mã</button>
+                            <button type="submit" class="btn btn-warning w-100">🔓 Thực hiện Giải mã</button>
                         </form>
                     </div>
                     {% if decrypt_result %}
                     <div class="card-footer">
                         <strong>Kết quả Giải mã:</strong>
-                        <p class="text-break">{{ decrypt_result }}</p>
+                        <p class="text-break mb-0">{{ decrypt_result }}</p>
                     </div>
                     {% endif %}
                 </div>

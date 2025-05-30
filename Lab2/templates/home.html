@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang Chủ - Chọn Phương Thức</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(0,0,0,0.5);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+        }
+        .btn-lg {
+            font-weight: 600;
+            padding: 15px;
+            font-size: 1.25rem;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background: #4e73df;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #2e59d9;
+        }
+        .btn-success {
+            background: #1cc88a;
+            border: none;
+        }
+        .btn-success:hover {
+            background: #17a673;
+        }
+        .btn-warning {
+            background: #f6c23e;
+            border: none;
+        }
+        .btn-warning:hover {
+            background: #dda20a;
+        }
+        .btn-info {
+            background: #36b9cc;
+            border: none;
+        }
+        .btn-info:hover {
+            background: #2c9faf;
+        }
+        .btn-dark {
+            background: #343a40;
+            border: none;
+        }
+        .btn-dark:hover {
+            background: #1d2124;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>🔐 Chọn Phương Thức Mã Hóa / Giải Mã</h1>
+        <div class="d-grid gap-4">
+            <a href="/caesar" class="btn btn-primary btn-lg">Caesar Cipher</a>
+            <a href="/vigenere" class="btn btn-success btn-lg">Vigenère Cipher</a>
+            <a href="/railfence" class="btn btn-warning btn-lg">Rail Fence Cipher</a>
+            <a href="/playfair" class="btn btn-info btn-lg">Playfair Cipher</a>
+            <a href="/trasposition" class="btn btn-dark btn-lg">Transposition Cipher</a>
+        </div>
+    </div>
+</body>
+</html>

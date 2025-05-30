@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transposition Cipher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 700px;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 4px #000;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Transposition Cipher</h1>
+
+        <!-- Encryption Form -->
+        <form action="/transposition/encrypt" method="POST" class="mb-4">
+            <div class="mb-3">
+                <label for="inputPlainText" class="form-label">Văn bản cần mã hóa:</label>
+                <textarea class="form-control" id="inputPlainText" name="inputPlainText" rows="3" required>{{ encrypt_input_text }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="inputKeyPlain" class="form-label">Khóa (số cột):</label>
+                <input type="number" class="form-control" id="inputKeyPlain" name="inputKeyPlain" min="2" required value="{{ inputKeyPlain }}">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">🔐 Mã Hóa</button>
+        </form>
+
+        {% if encrypt_result %}
+        <div class="alert alert-success" role="alert">
+            <strong>Kết quả mã hóa:</strong><br>{{ encrypt_result }}
+        </div>
+        {% endif %}
+
+        <!-- Decryption Form -->
+        <form action="/transposition/decrypt" method="POST">
+            <div class="mb-3">
+                <label for="decryptInputText" class="form-label">Văn bản cần giải mã:</label>
+                <textarea class="form-control" id="decryptInputText" name="inputPlainText" rows="3" required>{{ decrypt_input_text }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="inputKeyPlain" class="form-label">Khóa (số cột):</label>
+                <input type="number" class="form-control" id="inputKeyPlain" name="inputKeyPlain" min="2" required value="{{ inputKeyPlain }}">
+            </div>
+            <button type="submit" class="btn btn-success w-100">🔓 Giải Mã</button>
+        </form>
+
+        {% if decrypt_result %}
+        <div class="alert alert-info mt-4" role="alert">
+            <strong>Kết quả giải mã:</strong><br>{{ decrypt_result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

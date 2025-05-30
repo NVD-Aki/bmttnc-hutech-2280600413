@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Caesar Cipher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cipher Tool</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light">
     <div class="container py-5">
-        <h1 class="mb-4 text-center">🔐 Caesar Cipher</h1>
+        <h1 class="mb-4 text-center">🔐 Cipher Tool (Caesar & Vigenère)</h1>
 
         <div class="row gy-4">
-            <!-- Bảng Encrypt -->
+            <!-- Encrypt -->
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">🔒 Encrypt</div>
                     <div class="card-body">
                         <form method="post" action="/encrypt">
+                            <!-- Mode -->
+                            <div class="mb-3">
+                                <label for="encryptMode" class="form-label fw-semibold">Cipher Mode</label>
+                                <select id="encryptMode" name="mode" class="form-select" required>
+                                    <option value="caesar" {% if request.form.get('mode') == 'caesar' %}selected{% endif %}>Caesar</option>
+                                    <option value="vigenere" {% if request.form.get('mode') == 'vigenere' %}selected{% endif %}>Vigenère</option>
+                                </select>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="encryptText" class="form-label fw-semibold">Text</label>
                                 <textarea
@@ -29,15 +39,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="encryptShift" class="form-label fw-semibold">Shift</label>
+                                <label for="encryptKey" class="form-label fw-semibold">Key / Shift</label>
                                 <input
-                                    type="number"
-                                    id="encryptShift"
-                                    name="shift"
+                                    type="text"
+                                    id="encryptKey"
+                                    name="key"
                                     class="form-control"
-                                    placeholder="Enter shift amount"
+                                    placeholder="Enter key (number for Caesar, text for Vigenère)"
                                     required
-                                    value="{{ request.form.get('shift', '') if request.path == '/encrypt' else '' }}"
+                                    value="{{ request.form.get('key', '') if request.path == '/encrypt' else '' }}"
                                 />
                             </div>
 
@@ -54,12 +64,21 @@
                 </div>
             </div>
 
-            <!-- Bảng Decrypt -->
+            <!-- Decrypt -->
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-header bg-warning text-dark">🔓 Decrypt</div>
                     <div class="card-body">
                         <form method="post" action="/decrypt">
+                            <!-- Mode -->
+                            <div class="mb-3">
+                                <label for="decryptMode" class="form-label fw-semibold">Cipher Mode</label>
+                                <select id="decryptMode" name="mode" class="form-select" required>
+                                    <option value="caesar" {% if request.form.get('mode') == 'caesar' %}selected{% endif %}>Caesar</option>
+                                    <option value="vigenere" {% if request.form.get('mode') == 'vigenere' %}selected{% endif %}>Vigenère</option>
+                                </select>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="decryptText" class="form-label fw-semibold">Text</label>
                                 <textarea
@@ -73,15 +92,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="decryptShift" class="form-label fw-semibold">Shift</label>
+                                <label for="decryptKey" class="form-label fw-semibold">Key / Shift</label>
                                 <input
-                                    type="number"
-                                    id="decryptShift"
-                                    name="shift"
+                                    type="text"
+                                    id="decryptKey"
+                                    name="key"
                                     class="form-control"
-                                    placeholder="Enter shift amount"
+                                    placeholder="Enter key (number for Caesar, text for Vigenère)"
                                     required
-                                    value="{{ request.form.get('shift', '') if request.path == '/decrypt' else '' }}"
+                                    value="{{ request.form.get('key', '') if request.path == '/decrypt' else '' }}"
                                 />
                             </div>
 
